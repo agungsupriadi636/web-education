@@ -1,0 +1,19 @@
+---
+import { getCollection } from "astro:content"
+
+const info = await getCollection('informasi');
+---
+<div class="space-y-4">
+	<div>
+		<h2 class="text-3xl font-semibold">Informasi Sekolah</h2>
+	</div>
+	<div class="space-y-2">
+	{info.map( i =>
+		<article>
+			<a href="/">
+				<h3>{i.data.title}</h3>
+			</a>
+		</article>
+	)}
+	</div>
+</div>

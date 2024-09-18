@@ -1,0 +1,22 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import Hero from "../components/section/Hero.astro";
+import Berita from "../components/section/Berita.astro";
+import Informasi from "../components/section/Informasi.astro";
+import Pengumuman from "../components/section/Pengumuman.astro";
+---
+<MainLayout>
+	<main>
+		<Hero />
+		<section class="py-20 bg-[#113E59] text-gray-50">
+			<div class="container">
+				<div class="grid md:grid-cols-2 gap-8">
+					<Informasi />
+					<Pengumuman />
+				</div>
+			</div>
+		</section>
+		<Berita />
+	</main>
+</MainLayout>
+

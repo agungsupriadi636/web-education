@@ -1,0 +1,20 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { getCollection } from 'astro:content';
+import { Image } from "astro:assets";
+
+export async function getStaticPaths() {
+  const news = await getCollection('berita');
+  return news.map(entry => ({
+    params: { slug: entry.slug }, props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+<MainLayout>
+    <Image src={entry.data.image.src} alt={entry.data.image.alt} />
+    <h1>{entry.data.title}</h1>
+    <Content />
+</MainLayout>

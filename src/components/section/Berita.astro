@@ -1,0 +1,28 @@
+---
+import { getCollection } from "astro:content"
+import { Image } from "astro:assets";
+
+const news = await getCollection('berita');
+---
+<section class="py-20">
+	<div class="container">
+		<div class="mb-4">
+			<h2 class="text-3xl font-semibold">Berita Terbaru</h2>
+		</div>
+		
+		<div class="grid lg:grid-cols-3 gap-8">
+		{ news.map( n =>
+			<article class="group space-y-4">
+				<div class="aspect-[4/2] overflow-hidden">
+					<Image class="group-hover:scale-125 transition-all size-full object-cover" src={n.data.image.src} alt={n.data.image.alt} />
+				</div>
+				<div>
+					<a href={`/berita/${n.slug}`}>
+						<h3 class="text-lg font-semibold hover:underline">{n.data.title}</h3>
+					</a>
+				</div>
+			</article>
+		)}
+		</div>
+	</div>
+</section>

@@ -1,0 +1,25 @@
+---
+import { getCollection } from "astro:content";
+
+const pengumuman = await getCollection('pengumuman');
+---
+<div class="space-y-4">
+	<div>
+		<h2 class="text-3xl font-semibold">Pengumuman Sekolah</h2>
+	</div>
+	<div class="space-y-2">
+	{pengumuman.map( p =>
+		<article>
+			<div></div>
+			<div>
+				<h3>{p.data.title}</h3>
+				<time datetime={p.data.pubDate}>{p.data.pubDate.toLocaleDateString('id',{
+					year: "numeric",
+					month: "short",
+					day: "numeric",})}
+				</time>
+			</div>
+		</article>
+	)}
+	</div>
+</div>
