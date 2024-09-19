@@ -1,5 +1,6 @@
 ---
 title: "Pendaftaran Siswa Baru untuk Tahun Ajaran 2023/2024 Dibuka"
+pubDate: "2024-04-19"
 ---
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, odit, quisquam, eveniet, ducimus porro quam minus ipsa corrupti debitis ipsam fugiat soluta distinctio blanditiis labore accusantium illum dolor aliquid voluptates nostrum vitae nisi quia esse atque sapiente magni laboriosam nesciunt.
 

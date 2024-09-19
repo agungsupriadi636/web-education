@@ -3,6 +3,7 @@ title : "Sekolah Merayakan Festival Budaya Tahunan"
 image :
  src: ./budaya.jpg
  alt: "Festival Budaya"
+pubDate: "2024-04-12"
 ---
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus, veniam, nemo, natus in aliquid id inventore eius exercitationem molestias repellendus sunt velit ipsum nostrum minus impedit aperiam unde autem totam blanditiis eaque explicabo! Obcaecati officia nobis qui alias nesciunt illum ratione? Delectus, molestias repudiandae maxime ea temporibus laudantium voluptatum in.
 

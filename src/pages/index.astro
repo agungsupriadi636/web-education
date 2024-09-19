@@ -1,6 +1,7 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 import Hero from "../components/section/Hero.astro";
+import KataSambutan from "../components/section/KataSambutan.astro";
 import Berita from "../components/section/Berita.astro";
 import Informasi from "../components/section/Informasi.astro";
 import Pengumuman from "../components/section/Pengumuman.astro";
@@ -8,6 +9,7 @@ import Pengumuman from "../components/section/Pengumuman.astro";
 <MainLayout>
 	<main>
 		<Hero />
+		<KataSambutan />
 		<section class="py-20 bg-[#113E59] text-gray-50">
 			<div class="container">
 				<div class="grid md:grid-cols-2 gap-8">
@@ -17,6 +19,18 @@ import Pengumuman from "../components/section/Pengumuman.astro";
 			</div>
 		</section>
 		<Berita />
+		<section class="py-20 bg-[#113E59] text-white">
+			<div class="container">
+				<div class="text-center space-y-8">
+					<h2 class="text-3xl font-bold">Motto Kami</h2>
+					<div class="relative">
+						<blockquote class="relative">
+							Ilmu pengetahuan adalah peta yang memandu kita melewati kebimbangan dan ketidakpastian.- <city>Neil deGrasse Tyson</city>
+						</blockquote>
+					</div>
+				</div>
+			</div>
+		</section>
 	</main>
 </MainLayout>
 

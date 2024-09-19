@@ -3,17 +3,21 @@ import { getCollection } from "astro:content";
 
 const pengumuman = await getCollection('pengumuman');
 ---
-<div class="space-y-4">
+<div class="space-y-8">
 	<div>
-		<h2 class="text-3xl font-semibold">Pengumuman Sekolah</h2>
+		<h2 class="text-4xl font-semibold">Pengumuman Sekolah</h2>
 	</div>
 	<div class="space-y-2">
 	{pengumuman.map( p =>
-		<article>
-			<div></div>
+		<article class="flex gap-2">
+			<div class="flex flex-col items-center justify-center bg-red-500 p-2 font-bold size-20 rounded">
+				<span class="text-4xl">{p.data.pubDate.getDate()}</span>
+				<hr class="w-full" />
+				<span class="text-2xl">{p.data.pubDate.toLocaleDateString('id',{month: "short"})}</span>
+			</div>
 			<div>
-				<h3>{p.data.title}</h3>
-				<time datetime={p.data.pubDate}>{p.data.pubDate.toLocaleDateString('id',{
+				<a href="/" class="font-bold text-lg"><h3>{p.data.title}</h3></a>
+				<time class="text-slate-100" datetime={p.data.pubDate}>{p.data.pubDate.toLocaleDateString('id',{
 					year: "numeric",
 					month: "short",
 					day: "numeric",})}

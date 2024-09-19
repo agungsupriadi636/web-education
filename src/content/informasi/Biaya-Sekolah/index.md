@@ -1,5 +1,6 @@
 ---
 title : "Biaya Sekolah untuk Tahun Ajaran 2023/2024"
+pubDate: "2024-04-10"
 ---
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, impedit, obcaecati ullam natus veritatis illum est minima in earum asperiores magni quas quis error blanditiis tempore doloremque quia esse necessitatibus nesciunt voluptas nulla tempora fugiat dolorum a deserunt odit facere voluptatem. Consequatur, minima maiores vitae nobis aperiam similique! Dignissimos, consequatur veniam non fugiat et nostrum laudantium iste dolorum id enim.
 

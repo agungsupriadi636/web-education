@@ -3,6 +3,7 @@ title: "Sekolah Meningkatkan Infrastruktur IT untuk Meningkatkan Pembelajaran"
 image:
  src: ./computer.jpg
  alt: computer
+pubDate: "2024-04-13"
 ---
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id, omnis, quos optio eos laboriosam ad eligendi ab ipsa doloremque eveniet laudantium ea ut ullam totam soluta hic sunt adipisci temporibus culpa molestiae asperiores rem inventore earum repellendus incidunt officia tempora voluptate unde perferendis expedita! Voluptate blanditiis provident eligendi libero vero ad. Minima reprehenderit veritatis tempore voluptate vel labore quod necessitatibus.
 

@@ -1,5 +1,6 @@
 ---
 title : "Kebijakan Sekolah tentang Kehadiran dan Keterlambatan"
+pubDate: "2024-04-12"
 ---
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae, eos, laboriosam eum eaque vitae dolorem reiciendis enim quod officiis corporis sequi minus labore at placeat recusandae explicabo cumque. Soluta, debitis praesentium laborum vel omnis doloribus saepe nostrum suscipit rerum sed animi dolor nam illum. Ipsa, quae, distinctio eum aut temporibus aliquid nobis odio architecto libero voluptatum voluptate minus sunt recusandae.
 
