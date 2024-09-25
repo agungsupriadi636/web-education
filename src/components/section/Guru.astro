@@ -1,0 +1,27 @@
+---
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+
+const allGuru = await getCollection('guru');
+---
+<section class="py-20">
+	<div class="container">
+		<h2 class="text-3xl font-semibold mb-16 text-center">Tenaga Pengajar </h2>
+		<div class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 lg:gap-8">
+		{ allGuru?.map( guru => 
+			<div class="space-y-2 md:space-y-6">
+				<div class="aspect-square">
+					<Image class="size-full object-cover" src={guru.data.image_profile.src} alt={guru.data.image_profile.alt} />
+				</div>
+				<div class="text-center">
+					<h3 class="text-[#222] md:text-xl font-semibold">{guru.data.name}</h3>
+					<p class="text-[#333] text-sm">Guru {guru.data.mapel}</p>
+				</div>
+			</div>
+		)}
+		<div class="mt-8">
+			<a class="inline-block text-bold px-6 py-3 bg-blue-900 text-white hover:bg-blue-700 transition-all" href="/guru">Guru lainnya</a>
+		</div>
+		</div>
+	</div>
+</section>

@@ -28,8 +28,25 @@ const pengumumanCollection = defineCollection({
   }),
 });
 
+const guruCollection = defineCollection({
+  type: 'data',
+  schema: ({ image }) => z.object({
+    name: z.string(),
+    image_profile: z.object({
+      src : image().optional(),
+      alt: z.string(),
+    }),
+    contact: z.object({
+      no : z.string().optional(),
+      address : z.string().optional()                      
+    }),
+    mapel: z.string().optional()
+  }),
+});
+
 export const collections = {
   'berita': beritaCollection,
   'informasi': infoCollection,
   'pengumuman': pengumumanCollection,
+  'guru': guruCollection,
 };
