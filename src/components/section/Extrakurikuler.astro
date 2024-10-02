@@ -1,0 +1,25 @@
+---
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+
+const extrakurikuler = await getCollection('extrakurikuler');
+---
+<section class="py-20 text-gray-900">
+	<div class="container">
+		<div class="text-center mb-16">
+			<h2 class="text-3xl font-semibold text-blue-900">extrakurikuler</h2>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+		</div>
+		<div class="grid grid-cols-2 lg:grid-cols-3 gap-6">
+		{extrakurikuler.map( x =>
+			<article>
+				<Image class="block aspect-video object-cover" src={x.data.image.src} alt={x.data.image.alt} />
+				<div class="mt-6">
+					<h3 class="text-xl font-semibold">{x.data.title}</h3>
+					<p class="text-gray-700">{x.data.time}</p>
+				</div>
+			</article>
+		)}
+		</div>
+	</div>
+</section>

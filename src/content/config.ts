@@ -61,10 +61,9 @@ const extrakurikulerCollections = defineCollection({
   schema: ({ image }) => z.object({
     title: z.string(),
     image: z.object({
-      src: image.optional(),
+      src: image().optional(),
       alt: z.string().optional()
     }),
-    description: z.string(),
     time: z.string()
   })
 })
