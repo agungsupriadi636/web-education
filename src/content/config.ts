@@ -44,9 +44,36 @@ const guruCollection = defineCollection({
   }),
 });
 
+const fasilitasCollections = defineCollection({
+  type: 'data',
+  schema: ({ image }) => z.object({
+    title: z.string(),
+    image: z.object({
+      src : image().optional(),
+      alt: z.string().optional(),
+    }),
+    description: z.string(),
+  })
+});
+
+const extrakurikulerCollections = defineCollection({
+  type: "content",
+  schema: ({ image }) => z.object({
+    title: z.string(),
+    image: z.object({
+      src: image.optional(),
+      alt: z.string().optional()
+    }),
+    description: z.string(),
+    time: z.string()
+  })
+})
+
 export const collections = {
   'berita': beritaCollection,
   'informasi': infoCollection,
   'pengumuman': pengumumanCollection,
   'guru': guruCollection,
+  'fasilitas' : fasilitasCollections,
+  'extrakurikuler' : extrakurikulerCollections
 };

@@ -6,12 +6,14 @@ import Berita from "../components/section/Berita.astro";
 import Informasi from "../components/section/Informasi.astro";
 import Pengumuman from "../components/section/Pengumuman.astro";
 import Guru from "../components/section/Guru.astro";
+import Fasilitas from "../components/section/Fasilitas.astro";
 ---
 <MainLayout>
 	<main>
 		<Hero />
 		<KataSambutan />
-		<section class="py-20 bg-[#113E59] text-gray-50">
+		<Fasilitas />
+		<section class="py-20 bg-blue-950 text-gray-50">
 			<div class="container">
 				<div class="grid md:grid-cols-2 gap-8">
 					<Informasi />
