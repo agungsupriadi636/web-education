@@ -7,16 +7,16 @@ const fasilitas = await getCollection('fasilitas');
 <section class="py-20 bg-gray-100 text-gray-900">
 	<div class="container space-y-8">
 		<div>
-			<h2 class="text-3xl font-semibold text-blue-900">Fasilitas Sekolah</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+			<h2 class="text-4xl font-semibold text-blue-900">Fasilitas Sekolah</h2>
+			<hr class="border-yellow-300 mt-4 w-16 border-2" />
 		</div>
 		<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
 		{fasilitas.map(f =>
 			<article class="bg-white p-2 rounded-xl space-y-6">
 				<Image class="aspect-video object-cover rounded-lg" src={f.data.image.src} alt={f.data.image.alt} />
 				<div class="space-y-3">
-					<h3 class="text-xl font-semibold">{f.data.title}</h3>
-					<p>{f.data.description}</p>
+					<h3 class="text-blue-900 text-xl font-semibold">{f.data.title}</h3>
+					<p class="text-gray-700">{f.data.description}</p>
 				</div>
 			</article>
 		)}

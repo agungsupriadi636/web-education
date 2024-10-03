@@ -6,8 +6,9 @@ const news = await getCollection('berita');
 ---
 <section class="py-20">
 	<div class="container">
-		<div class="mb-4">
-			<h2 class="text-3xl font-semibold">Berita Terbaru</h2>
+		<div class="mb-12">
+			<h2 class="text-3xl text-blue-900 font-semibold">Berita Terbaru</h2>
+			<hr class="border-yellow-300 mt-4 w-16 border-2" />
 		</div>
 		
 		<div class="grid lg:grid-cols-3 gap-8">
@@ -17,14 +18,14 @@ const news = await getCollection('berita');
 					<Image class="group-hover:scale-125 transition-all size-full object-cover" src={n.data.image.src} alt={n.data.image.alt} />
 				</div>
 				<div>
-					<div>
+					<div class="text-gray-700">
 						<time datetime={n.data.pubDate}>{n.data.pubDate.toLocaleDateString('id',{
 							year: "numeric",
 							month: "short",
 							day: "numeric",})}
 						</time>
 					</div>
-					<a href={`/berita/${n.slug}`}>
+					<a class="text-blue-900" href={`/berita/${n.slug}`}>
 						<h3 class="text-lg font-semibold hover:underline">{n.data.title}</h3>
 					</a>
 				</div>
