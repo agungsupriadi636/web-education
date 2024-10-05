@@ -1,5 +1,5 @@
 import { z, defineCollection } from 'astro:content';
-
+//berita content
 const beritaCollection = defineCollection({
   type: 'content',
   schema: ({ image }) => z.object({
@@ -11,7 +11,7 @@ const beritaCollection = defineCollection({
     pubDate: z.string().transform((str) => new Date(str)),
   }),
 });
-
+//info content
 const infoCollection = defineCollection({
   type: 'content',
   schema: z.object({
@@ -19,7 +19,7 @@ const infoCollection = defineCollection({
     pubDate: z.string().transform((str) => new Date(str)),
   }),
 });
-
+//pengumuman content
 const pengumumanCollection = defineCollection({
   type: 'content',
   schema: z.object({
@@ -27,7 +27,7 @@ const pengumumanCollection = defineCollection({
     pubDate: z.string().transform((str) => new Date(str)),
   }),
 });
-
+// daftar guru
 const guruCollection = defineCollection({
   type: 'data',
   schema: ({ image }) => z.object({
@@ -43,7 +43,7 @@ const guruCollection = defineCollection({
     mapel: z.string().optional()
   }),
 });
-
+// fasilitas
 const fasilitasCollections = defineCollection({
   type: 'data',
   schema: ({ image }) => z.object({
@@ -55,7 +55,7 @@ const fasilitasCollections = defineCollection({
     description: z.string(),
   })
 });
-
+// exskul
 const extrakurikulerCollections = defineCollection({
   type: "content",
   schema: ({ image }) => z.object({
@@ -68,11 +68,24 @@ const extrakurikulerCollections = defineCollection({
   })
 })
 
+// pages content
+const pagesCollections = defineCollection({
+  type: 'content',
+  schema: ({ image }) => z.object({
+    title: z.string(),
+    image: z.object({
+      src: image().optional(),
+      alt: z.string().optional()
+    }).optional()
+  })
+})
+
 export const collections = {
   'berita': beritaCollection,
   'informasi': infoCollection,
   'pengumuman': pengumumanCollection,
   'guru': guruCollection,
   'fasilitas' : fasilitasCollections,
-  'extrakurikuler' : extrakurikulerCollections
+  'extrakurikuler' : extrakurikulerCollections,
+  'pages' : pagesCollections
 };
