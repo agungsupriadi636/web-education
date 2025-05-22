@@ -1,0 +1,47 @@
+---
+// src/components/Timeline.astro
+const { events } = Astro.props;
+---
+
+<div class="relative max-w-2xl mx-auto">
+  <!-- Garis vertikal -->
+  <div class="absolute left-1/2 w-1 h-full bg-blue-200 transform -translate-x-1/2"></div>
+  
+  <!-- Item Timeline -->
+  <div class="space-y-8">
+    {events.map((item, index) => (
+      <div class={`relative flex ${index % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
+        <!-- Bulatan -->
+        <div class="absolute left-1/2 h-6 w-6 bg-blue-600 rounded-full transform -translate-x-1/2 flex items-center justify-center z-10">
+          <div class="h-3 w-3 bg-white rounded-full"></div>
+        </div>
+        
+        <!-- Konten -->
+        <div class={`w-5/12 p-4 rounded-lg shadow-md ${index % 2 === 0 ? 'bg-white mr-auto' : 'bg-blue-50 ml-auto'}`}>
+          <div class="font-bold text-blue-800">{item.tahun}</div>
+          <p class="text-gray-700">{item.event}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  /* Animasi timeline */
+  @media (max-width: 768px) {
+    .timeline-item {
+      justify-content: flex-start !important;
+    }
+    .timeline-content {
+      width: 80% !important;
+      margin-left: 2rem !important;
+    }
+  }
+
+  .timeline-content {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.timeline-content:hover {
+  transform: translateY(-5px);
+}
+</style>

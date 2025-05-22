@@ -1,0 +1,458 @@
+---
+// src/pages/kontak.astro
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const kontak = {
+    alamat: "Jl. Pendidikan No. 123, Kelurahan Bangunan, Kecamatan Kota, Provinsi Bangunan 12345",
+    telepon: "(021) 1234-5678",
+    email: "info@sekolahbangunan.sch.id",
+    jamOperasional: "Senin-Jumat: 07.00-15.00 WIB",
+};
+
+const sosialMedia = [
+    { nama: "Facebook", icon: "facebook", url: "#" },
+    { nama: "Instagram", icon: "instagram", url: "#" },
+    { nama: "YouTube", icon: "youtube", url: "#" },
+    { nama: "Twitter", icon: "twitter", url: "#" },
+];
+---
+
+<!doctype html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Kontak - NAMA SEKOLAH</title>
+        <script
+            src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"
+            async
+            defer></script>
+        <style>
+            #map {
+                height: 400px;
+                width: 100%;
+            }
+        </style>
+    </head>
+    <body class="bg-gray-50">
+        <Header />
+
+        <!-- Hero Section -->
+        <section
+            class="bg-gradient-to-r from-blue-700 to-blue-900 text-white py-20"
+        >
+            <div class="container mx-auto px-4 text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">
+                    Hubungi Kami
+                </h1>
+                <p class="text-xl">Kami siap membantu Anda</p>
+            </div>
+        </section>
+
+        <!-- Info Kontak -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="grid md:grid-cols-2 gap-24">
+                    <!-- Form Kontak -->
+                    <div>
+                        <h2 class="text-3xl font-bold text-blue-800 mb-6">
+                            Kirim Pesan
+                        </h2>
+
+                        <form class="space-y-6">
+                            <div>
+                                <label
+                                    for="nama"
+                                    class="block text-gray-700 mb-2"
+                                    >Nama Lengkap</label
+                                >
+                                <input
+                                    type="text"
+                                    id="nama"
+                                    class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                />
+                            </div>
+
+                            <div>
+                                <label
+                                    for="email"
+                                    class="block text-gray-700 mb-2"
+                                    >Email</label
+                                >
+                                <input
+                                    type="email"
+                                    id="email"
+                                    class="w-full px-4 py-2 border rounded-lg"
+                                />
+                            </div>
+
+                            <div>
+                                <label
+                                    for="subjek"
+                                    class="block text-gray-700 mb-2"
+                                    >Subjek</label
+                                >
+                                <select
+                                    id="subjek"
+                                    class="w-full px-4 py-2 border rounded-lg"
+                                >
+                                    <option value="">Pilih Subjek</option>
+                                    <option value="ppdb"
+                                        >PPDB/Pendaftaran</option
+                                    >
+                                    <option value="informasi"
+                                        >Informasi Sekolah</option
+                                    >
+                                    <option value="lainnya">Lainnya</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label
+                                    for="pesan"
+                                    class="block text-gray-700 mb-2"
+                                    >Pesan</label
+                                >
+                                <textarea
+                                    id="pesan"
+                                    rows="5"
+                                    class="w-full px-4 py-2 border rounded-lg"
+                                ></textarea>
+                            </div>
+
+                            <button
+                                type="submit"
+                                class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors w-full"
+                            >
+                                Kirim Pesan
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Info Sekolah -->
+                    <div>
+                        <h2 class="text-3xl font-bold text-blue-800 mb-6">
+                            Informasi Kontak
+                        </h2>
+
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-6 w-6 text-blue-600 mr-4 mt-1 flex-shrink-0"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                                    ></path>
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                                    ></path>
+                                </svg>
+                                <div>
+                                    <h3 class="font-semibold text-lg">
+                                        Alamat
+                                    </h3>
+                                    <p class="text-gray-600">{kontak.alamat}</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-6 w-6 text-blue-600 mr-4 flex-shrink-0"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                                    ></path>
+                                </svg>
+                                <div>
+                                    <h3 class="font-semibold text-lg">
+                                        Telepon
+                                    </h3>
+                                    <p class="text-gray-600">
+                                        {kontak.telepon}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-6 w-6 text-blue-600 mr-4 flex-shrink-0"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                                    ></path>
+                                </svg>
+                                <div>
+                                    <h3 class="font-semibold text-lg">Email</h3>
+                                    <p class="text-gray-600">{kontak.email}</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-6 w-6 text-blue-600 mr-4 flex-shrink-0"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                                    ></path>
+                                </svg>
+                                <div>
+                                    <h3 class="font-semibold text-lg">
+                                        Jam Operasional
+                                    </h3>
+                                    <p class="text-gray-600">
+                                        {kontak.jamOperasional}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Sosial Media -->
+                            <div class="pt-4">
+                                <h3 class="font-semibold text-lg mb-3">
+                                    Media Sosial
+                                </h3>
+                                <div class="flex space-x-4">
+                                    {
+                                        sosialMedia.map((sosmed) => (
+                                            <a
+                                                href={sosmed.url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                class="bg-gray-100 hover:bg-blue-100 p-3 rounded-full transition-colors"
+                                                aria-label={sosmed.nama}
+                                            >
+                                                <svg class="h-6 w-6 text-blue-600">
+                                                    <use
+                                                        href={`/icons/sprite.svg#${sosmed.icon}`}
+                                                    />
+                                                </svg>
+                                            </a>
+                                        ))
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Peta Lokasi -->
+        <section class="py-16 bg-gray-100">
+            <div class="container mx-auto px-4 max-w-6xl">
+                <h2 class="text-3xl font-bold text-center text-blue-800 mb-12">
+                    Lokasi Sekolah
+                </h2>
+
+                <div class="bg-white p-4 rounded-xl shadow-md">
+                    <div id="map"></div>
+                </div>
+
+                <div class="mt-6 text-center">
+                    <a
+                        href="https://maps.google.com/?q=NAMA+SEKOLAH"
+                        target="_blank"
+                        class="inline-flex items-center text-blue-600 hover:underline"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5 mr-2"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                            ></path>
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        Buka di Google Maps
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4 max-w-4xl">
+                <h2 class="text-3xl font-bold text-center text-blue-800 mb-12">
+                    Pertanyaan Umum
+                </h2>
+
+                <div class="space-y-4 max-w-3xl mx-auto">
+                    <details class="group border-b border-gray-200 pb-4" open>
+                        <summary
+                            class="flex justify-between items-center font-medium cursor-pointer list-none"
+                        >
+                            <span class="text-lg text-blue-800"
+                                >Bagaimana cara mendaftar PPDB?</span
+                            >
+                            <span class="transition group-open:rotate-180">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-5 w-5"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </span>
+                        </summary>
+                        <p class="text-gray-600 mt-3 pl-4">
+                            Pendaftaran dapat dilakukan secara online melalui
+                            website ini. Klik menu "Pendaftaran" dan isi
+                            formulir yang tersedia. Pastikan dokumen persyaratan
+                            sudah dipersiapkan dalam format PDF/JPG.
+                        </p>
+                    </details>
+                    <details class="group border-b border-gray-200 pb-4" open>
+                        <summary
+                            class="flex justify-between items-center font-medium cursor-pointer list-none"
+                        >
+                            <span class="text-lg text-blue-800"
+                                >Bagaimana cara mendaftar PPDB?</span
+                            >
+                            <span class="transition group-open:rotate-180">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-5 w-5"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </span>
+                        </summary>
+                        <p class="text-gray-600 mt-3 pl-4">
+                            Pendaftaran dapat dilakukan secara online melalui
+                            website ini. Klik menu "Pendaftaran" dan isi
+                            formulir yang tersedia. Pastikan dokumen persyaratan
+                            sudah dipersiapkan dalam format PDF/JPG.
+                        </p>
+                    </details>
+                    <details class="group border-b border-gray-200 pb-4" open>
+                        <summary
+                            class="flex justify-between items-center font-medium cursor-pointer list-none"
+                        >
+                            <span class="text-lg text-blue-800"
+                                >Bagaimana cara mendaftar PPDB?</span
+                            >
+                            <span class="transition group-open:rotate-180">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-5 w-5"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </span>
+                        </summary>
+                        <p class="text-gray-600 mt-3 pl-4">
+                            Pendaftaran dapat dilakukan secara online melalui
+                            website ini. Klik menu "Pendaftaran" dan isi
+                            formulir yang tersedia. Pastikan dokumen persyaratan
+                            sudah dipersiapkan dalam format PDF/JPG.
+                        </p>
+                    </details>
+                    <!-- Tambahkan FAQ lainnya -->
+                </div>
+            </div>
+        </section>
+
+        <Footer />
+
+        <script is:inline>
+            // Google Maps
+            function initMap() {
+                const lokasiSekolah = { lat: -6.2, lng: 106.816666 };
+                const map = new google.maps.Map(
+                    document.getElementById("map"),
+                    {
+                        zoom: 15,
+                        center: lokasiSekolah,
+                        styles: [
+                            {
+                                featureType: "poi",
+                                elementType: "labels",
+                                stylers: [{ visibility: "off" }],
+                            },
+                        ],
+                    },
+                );
+
+                new google.maps.Marker({
+                    position: lokasiSekolah,
+                    map: map,
+                    title: "NAMA SEKOLAH",
+                });
+            }
+
+            // FAQ Accordion
+            document.querySelectorAll("details").forEach((detail) => {
+                detail.addEventListener("toggle", () => {
+                    if (detail.open) {
+                        detail.querySelector("svg").classList.add("rotate-180");
+                    } else {
+                        detail
+                            .querySelector("svg")
+                            .classList.remove("rotate-180");
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>

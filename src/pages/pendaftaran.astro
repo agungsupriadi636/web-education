@@ -1,0 +1,240 @@
+---
+// src/pages/pendaftaran.astro
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const jalurPendaftaran = [
+  {
+    nama: "Jalur Prestasi",
+    deskripsi: "Untuk siswa berprestasi akademik/non-akademik",
+    persyaratan: [
+      "Rapor nilai semester 1-5",
+      "Sertifikat prestasi",
+      "Surat rekomendasi"
+    ],
+    kuota: "15%"
+  },
+  // ... tambahkan jalur lainnya
+];
+
+const timelinePPDB = [
+  { tanggal: "1-15 Mei 2024", kegiatan: "Pendaftaran Online" },
+  { tanggal: "20 Mei 2024", kegiatan: "Pengumuman Tahap 1" },
+  // ... tahapan lainnya
+];
+---
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pendaftaran Siswa Baru - NAMA SEKOLAH</title>
+  <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50">
+  <Header />
+
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-r from-blue-700 to-blue-900 text-white py-20">
+    <div class="container mx-auto px-4 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Penerimaan Peserta Didik Baru</h1>
+      <p class="text-xl">Tahun Ajaran 2024/2025</p>
+    </div>
+  </section>
+
+  <!-- Info Penting -->
+  <section class="py-12 bg-yellow-50">
+    <div class="container mx-auto px-4">
+      <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-yellow-500">
+        <h2 class="text-2xl font-bold text-yellow-800 mb-4 flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+          Informasi Penting
+        </h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div>
+            <h3 class="font-semibold text-gray-800">Periode Pendaftaran</h3>
+            <p class="text-gray-600">1 Mei - 15 Juni 2024</p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-gray-800">Kuota Penerimaan</h3>
+            <p class="text-gray-600">200 Siswa</p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-gray-800">Biaya Pendaftaran</h3>
+            <p class="text-gray-600">Rp 250.000 (non-refundable)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Jalur Pendaftaran -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center text-blue-800 mb-12">Jalur Pendaftaran</h2>
+      
+      <div class="splide" aria-label="Jalur Pendaftaran">
+        <div class="splide__track">
+          <ul class="splide__list">
+            {jalurPendaftaran.map((jalur) => (
+              <li class="splide__slide">
+                <div class="bg-gray-50 p-8 rounded-xl h-full">
+                  <h3 class="text-xl font-bold mb-4">{jalur.nama}</h3>
+                  <p class="text-gray-600 mb-6">{jalur.deskripsi}</p>
+                  
+                  <h4 class="font-semibold mb-2">Persyaratan:</h4>
+                  <ul class="space-y-2 mb-6">
+                    {jalur.persyaratan.map((syarat) => (
+                      <li class="flex items-start">
+                        <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span>{syarat}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  
+                  <div class="bg-blue-100 text-blue-800 px-4 py-2 rounded-lg inline-block">
+                    Kuota: {jalur.kuota}
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', function() {
+        new Splide('.splide', {
+          type: 'loop',
+          perPage: 3,
+          gap: '1rem',
+          breakpoints: {
+            1024: { perPage: 2 },
+            640: { perPage: 1 }
+          }
+        }).mount();
+      });
+    </script>
+  </section>
+
+  <!-- Timeline PPDB -->
+  <section class="py-16 bg-gray-100">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <h2 class="text-3xl font-bold text-center text-blue-800 mb-12">Timeline PPDB</h2>
+      
+      <div class="relative pl-8 sm:pl-32 py-6 group">
+        <!-- Garis vertikal -->
+        <div class="absolute left-0 sm:left-28 top-0 bottom-0 w-0.5 bg-blue-200"></div>
+        
+        {timelinePPDB.map((item, index) => (
+          <div class="relative mb-10 last:mb-0">
+            <!-- Bulatan -->
+            <div class="absolute left-0 sm:-left-28 top-0 h-6 w-6 bg-blue-600 rounded-full flex items-center justify-center -ml-3 sm:ml-0">
+              <div class="h-3 w-3 bg-white rounded-full"></div>
+            </div>
+            
+            <!-- Konten -->
+            <div class="bg-white p-6 rounded-xl shadow-md">
+              <div class="font-bold text-blue-800 mb-2">{item.tanggal}</div>
+              <p class="text-gray-700">{item.kegiatan}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Form Pendaftaran -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <h2 class="text-3xl font-bold text-center text-blue-800 mb-12">Formulir Pendaftaran Online</h2>
+      
+      <form class="bg-gray-50 p-8 rounded-xl shadow-sm">
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+          <!-- Kolom Kiri -->
+          <div class="space-y-6">
+            <div>
+              <label for="nama" class="block text-gray-700 mb-2">Nama Lengkap</label>
+              <input type="text" id="nama" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            
+            <div>
+              <label for="ttl" class="block text-gray-700 mb-2">Tempat/Tanggal Lahir</label>
+              <input type="text" id="ttl" class="w-full px-4 py-2 border rounded-lg">
+            </div>
+            
+            <div>
+              <label class="block text-gray-700 mb-2">Jenis Kelamin</label>
+              <div class="flex gap-6">
+                <label class="inline-flex items-center">
+                  <input type="radio" name="gender" class="text-blue-600">
+                  <span class="ml-2">Laki-laki</span>
+                </label>
+                <label class="inline-flex items-center">
+                  <input type="radio" name="gender" class="text-blue-600">
+                  <span class="ml-2">Perempuan</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Kolom Kanan -->
+          <div class="space-y-6">
+            <div>
+              <label for="asal-sekolah" class="block text-gray-700 mb-2">Asal Sekolah</label>
+              <input type="text" id="asal-sekolah" class="w-full px-4 py-2 border rounded-lg">
+            </div>
+            
+            <div>
+              <label for="jalur" class="block text-gray-700 mb-2">Jalur Pendaftaran</label>
+              <select id="jalur" class="w-full px-4 py-2 border rounded-lg">
+                <option value="">Pilih Jalur</option>
+                {jalurPendaftaran.map((jalur) => (
+                  <option value={jalur.nama}>{jalur.nama}</option>
+                ))}
+              </select>
+            </div>
+            
+            <div>
+              <label for="wa" class="block text-gray-700 mb-2">Nomor WhatsApp</label>
+              <input type="tel" id="wa" class="w-full px-4 py-2 border rounded-lg">
+            </div>
+          </div>
+        </div>
+        
+        <!-- Upload Berkas -->
+        <div class="mb-8">
+          <h3 class="text-xl font-semibold mb-4">Upload Berkas</h3>
+          <div class="space-y-4">
+            <div>
+              <label class="block text-gray-700 mb-2">Rapor Terakhir (PDF, max 2MB)</label>
+              <input type="file" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+            </div>
+            <div>
+              <label class="block text-gray-700 mb-2">Foto (JPG, max 1MB)</label>
+              <input type="file" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+            </div>
+          </div>
+        </div>
+        
+        <!-- Tombol Submit -->
+        <div class="text-center">
+          <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors">
+            Daftar Sekarang
+          </button>
+          <p class="text-sm text-gray-500 mt-4">* Pastikan data yang diisi sudah benar</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <Footer />
+</body>
+</html>

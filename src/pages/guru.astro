@@ -1,0 +1,183 @@
+---
+// src/pages/guru.astro
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const categories = [
+    { id: "all", label: "Semua" },
+    { id: "guru", label: "Guru" },
+    { id: "staff", label: "Staf" },
+    { id: "kepsek", label: "Kepala Sekolah" },
+];
+
+const team = [
+    {
+        nama: "Dr. John Doe, M.Pd.",
+        jabatan: "Kepala Sekolah",
+        foto: "/team/kepsek.jpg",
+        kategori: "kepsek",
+        mapel: "-",
+    },
+    {
+        nama: "Jane Smith, S.Pd.",
+        jabatan: "Guru Matematika",
+        foto: "/team/guru1.jpg",
+        kategori: "guru",
+        mapel: "Matematika",
+    },
+    {
+        nama: "Jane Smith, S.Pd.",
+        jabatan: "Guru Matematika",
+        foto: "/team/guru1.jpg",
+        kategori: "guru",
+        mapel: "Matematika",
+    },
+    {
+        nama: "Jane Smith, S.Pd.",
+        jabatan: "Guru Matematika",
+        foto: "/team/guru1.jpg",
+        kategori: "guru",
+        mapel: "Matematika",
+    },
+    {
+        nama: "Jane Smith, S.Pd.",
+        jabatan: "Guru Matematika",
+        foto: "/team/guru1.jpg",
+        kategori: "staff",
+        mapel: "-",
+    },
+    {
+        nama: "Jane Smith, S.Pd.",
+        jabatan: "Guru Matematika",
+        foto: "/team/guru1.jpg",
+        kategori: "staff",
+        mapel: "-",
+    },
+    // ... tambahkan data lainnya
+];
+---
+
+<!doctype html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Guru & Staf - NAMA SEKOLAH</title>
+        <style>
+            .team-item {
+                transition: all 0.3s ease;
+                opacity: 0;
+                animation: fadeIn 0.5s ease forwards;
+            }
+            @keyframes fadeIn {
+                to {
+                    opacity: 1;
+                }
+            }
+        </style>
+    </head>
+    <body class="bg-gray-50">
+        <Header />
+
+        <!-- Hero Section -->
+        <section
+            class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20"
+        >
+            <div class="container mx-auto px-4 text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Guru & Staf</h1>
+                <p class="text-xl">
+                    Tenaga pendidik profesional yang berdedikasi
+                </p>
+            </div>
+        </section>
+
+        <!-- Filter Kategori -->
+        <section class="py-12 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-wrap justify-center gap-4">
+                    {
+                        categories.map((category) => (
+                            <button
+                                onclick={`filterTeam('${category.id}')`}
+                                class="px-6 py-2 rounded-full border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white transition-colors"
+                            >
+                                {category.label}
+                            </button>
+                        ))
+                    }
+                </div>
+            </div>
+        </section>
+
+        <!-- Daftar Guru & Staf -->
+        <section class="py-16 bg-gray-100">
+            <div class="container mx-auto px-4">
+                <div
+                    class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
+                >
+                    {
+                        team.map((person) => (
+                            <div
+                                class="team-item bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all"
+                                data-category={person.kategori}
+                            >
+                                <img
+                                    src={person.foto}
+                                    alt={person.nama}
+                                    class="w-full h-64 object-cover"
+                                />
+                                <div class="p-6">
+                                    <h3 class="text-xl font-bold">
+                                        {person.nama}
+                                    </h3>
+                                    <p class="text-blue-600 font-medium">
+                                        {person.jabatan}
+                                    </p>
+                                    {person.mapel !== "-" && (
+                                        <p class="text-gray-600 mt-2">
+                                            Mata Pelajaran: {person.mapel}
+                                        </p>
+                                    )}
+                                </div>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+        </section>
+
+        <!-- Struktur Organisasi -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center text-blue-800 mb-12">
+                    Struktur Organisasi
+                </h2>
+                <div class="bg-gray-100 p-8 rounded-lg max-w-4xl mx-auto">
+                    <img
+                        src="/images/struktur-organisasi.jpg"
+                        alt="Struktur Organisasi Sekolah"
+                        class="w-full"
+                    />
+                </div>
+            </div>
+        </section>
+
+        <Footer />
+        <script is:inline>
+            // Filter function untuk client-side
+            function filterTeam(category) {
+                const items = document.querySelectorAll(".team-item");
+                items.forEach((item) => {
+                    if (
+                        category === "all" ||
+                        item.dataset.category === category
+                    ) {
+                        item.classList.remove("hidden");
+                    } else {
+                        item.classList.add("hidden");
+                    }
+                });
+            }
+        </script>
+    </body>
+</html>
