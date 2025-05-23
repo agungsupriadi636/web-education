@@ -1,9 +1,10 @@
 ---
 title: "Sekolah Meningkatkan Infrastruktur IT untuk Meningkatkan Pembelajaran"
-image:
- src: ./computer.jpg
- alt: computer
-pubDate: "2024-04-13"
+cover: ./computer.jpg
+date: 2024-04-15
+description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum, ullam, velit ipsam soluta libero placeat sequi dignissimos expedita culpa quam debitis iure vero quisquam iste temporibus! Nam, rem unde eaque laborum voluptatem libero facere voluptate quisquam sed eos!"
+tags: ["berbagi", "alumni", "sekolah"]
+categories: ["infrastruktur"]
 ---
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id, omnis, quos optio eos laboriosam ad eligendi ab ipsa doloremque eveniet laudantium ea ut ullam totam soluta hic sunt adipisci temporibus culpa molestiae asperiores rem inventore earum repellendus incidunt officia tempora voluptate unde perferendis expedita! Voluptate blanditiis provident eligendi libero vero ad. Minima reprehenderit veritatis tempore voluptate vel labore quod necessitatibus.
 

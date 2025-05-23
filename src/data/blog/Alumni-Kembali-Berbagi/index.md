@@ -1,9 +1,10 @@
 ---
 title: "Alumni Kembali Berbagi Pengalaman Karier dengan Siswa"
-image:
- src: ./alumni.jpg
- alt: alumni
-pubDate: "2024-04-10"
+cover: ./alumni.jpg
+date: 2024-04-22
+description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum, ullam, velit ipsam soluta libero placeat sequi dignissimos expedita culpa quam debitis iure vero quisquam iste temporibus! Nam, rem unde eaque laborum voluptatem libero facere voluptate quisquam sed eos!"
+tags: ["berbagi", "alumni", "sekolah"]
+categories: ["alumni"]
 ---
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum, ullam, velit ipsam soluta libero placeat sequi dignissimos expedita culpa quam debitis iure vero quisquam iste temporibus! Nam, rem unde eaque laborum voluptatem libero facere voluptate quisquam sed eos! At, error.
 

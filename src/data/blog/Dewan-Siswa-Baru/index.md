@@ -1,9 +1,10 @@
 ---
 title : "Dewan Siswa Baru Terpilih untuk Tahun Ajaran"
-image :
- src: ./osis.jpg
- alt: osis
-pubDate: "2024-04-11"
+cover : ./osis.jpg
+date: 2024-04-20
+description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum, ullam, velit ipsam soluta libero placeat sequi dignissimos expedita culpa quam debitis iure vero quisquam iste temporibus! Nam, rem unde eaque laborum voluptatem libero facere voluptate quisquam sed eos!"
+tags: ["berbagi", "alumni", "sekolah"]
+categories: ["alumni"]
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, beatae, quae enim hic rem optio culpa officia voluptatibus temporibus obcaecati at ea ducimus saepe earum impedit assumenda nihil sit odio! Sint, aspernatur, laborum, nobis, ab odio corporis fuga iure vero sit modi incidunt recusandae eum dolores ex aperiam! Quam, nihil.

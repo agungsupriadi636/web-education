@@ -1,9 +1,10 @@
 ---
-title : "Sekolah Merayakan Festival Budaya Tahunan"
-image :
- src: ./budaya.jpg
- alt: "Festival Budaya"
-pubDate: "2024-04-12"
+title : "Siswa Berprestasi dalam Kompetisi Matematika Nasional"
+cover : ./hero-image-1.jpg
+date: 2024-04-10
+description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum, ullam, velit ipsam soluta libero placeat sequi dignissimos expedita culpa quam debitis iure vero quisquam iste temporibus! Nam, rem unde eaque laborum voluptatem libero facere voluptate quisquam sed eos!"
+tags: ["berbagi", "alumni", "sekolah"]
+categories: ["prestasi"]
 ---
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus, veniam, nemo, natus in aliquid id inventore eius exercitationem molestias repellendus sunt velit ipsum nostrum minus impedit aperiam unde autem totam blanditiis eaque explicabo! Obcaecati officia nobis qui alias nesciunt illum ratione? Delectus, molestias repudiandae maxime ea temporibus laudantium voluptatum in.
 

@@ -1,0 +1,307 @@
+---
+// src/pages/berita/[id].astro
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { Image } from "astro:assets";
+import { getRelatedPosts } from "../../lib/index.ts";
+
+import { getCollection, render } from "astro:content";
+// 1. Generate a new path for every collection entry
+export async function getStaticPaths() {
+    const posts = await getCollection("blog");
+    return posts.map((post) => ({
+        params: { id: post.id },
+        props: { post },
+    }));
+}
+// 2. For your template, you can get the entry directly from the prop
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const relatedPost = await getRelatedPosts(
+    post?.data.categories,
+    post?.data.title || "",
+    3,
+);
+---
+
+<!doctype html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{post.data.title} | NAMA SEKOLAH</title>
+        <meta
+            name="description"
+            content="Berita terbaru dari SMA Negeri 1 Bangunan"
+        />
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content={post.data.title} />
+        <!-- <meta
+      property="og:description"
+      content={post.Content.replace(/<[^>]*>/g, "").substring(0, 160)}
+    />
+    <meta
+      property="og:image"
+      content={new URL(post.data.cover, Astro.url).href}
+    /> -->
+
+        <!-- Twitter -->
+        <meta name="twitter:card" content="summary_large_image" />
+    </head>
+    <body class="bg-gray-50">
+        <Header />
+
+        <!-- Breadcrumb -->
+        <nav class="bg-blue-50 py-4">
+            <div class="container mx-auto px-4">
+                <ol class="flex items-center space-x-2 text-sm">
+                    <li>
+                        <a href="/" class="text-blue-600 hover:underline"
+                            >Beranda</a
+                        >
+                    </li>
+                    <li>
+                        <span class="text-gray-500">/</span>
+                    </li>
+                    <li>
+                        <a href="/berita" class="text-blue-600 hover:underline"
+                            >Berita</a
+                        >
+                    </li>
+                    <li>
+                        <span class="text-gray-500">/</span>
+                    </li>
+                    <li class="text-gray-500" aria-current="page">
+                        {post.data.title}
+                    </li>
+                </ol>
+            </div>
+        </nav>
+
+        <!-- Artikel Utama -->
+        <article class="py-16 bg-white">
+            <div class="container mx-auto px-4 max-w-4xl">
+                <header class="mb-12">
+                    <div class="flex items-center justify-between mb-4">
+                        <span
+                            class="px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800"
+                        >
+                            {post.data.categories}
+                        </span>
+                        <time
+                            class="text-gray-500 text-sm"
+                            datetime={new Date(post.data.date).toISOString()}
+                        >
+                            {
+                                new Date(post.data.date).toLocaleDateString(
+                                    "id-ID",
+                                    {
+                                        day: "numeric",
+                                        month: "long",
+                                        year: "numeric",
+                                    },
+                                )
+                            }
+                        </time>
+                    </div>
+
+                    <h1
+                        class="text-3xl md:text-4xl font-bold text-gray-900 mb-6"
+                    >
+                        {post.data.title}
+                    </h1>
+
+                    <div class="flex items-center mb-8">
+                        <img
+                            src="/icons/avatar-author.jpg"
+                            alt={post.data.author}
+                            class="w-10 h-10 rounded-full mr-3"
+                        />
+                        <div>
+                            <p class="font-medium text-gray-900">
+                                {post.data.author}
+                            </p>
+                            <p class="text-sm text-gray-500">Staf Redaksi</p>
+                        </div>
+                    </div>
+
+                    <Image
+                        src={post.data.cover}
+                        alt={post.data.title}
+                        class="w-full h-auto rounded-xl shadow-md mb-8"
+                        loading="lazy"
+                    />
+                </header>
+
+                <!-- Konten Artikel -->
+                <div class="prose max-w-none">
+                    <Content />
+                </div>
+
+                <!-- Tag -->
+                <div class="mt-12 pt-6 border-t border-gray-200">
+                    <div class="flex flex-wrap gap-2">
+                        {
+                            post.data.tags.map((tag) => (
+                                <a
+                                    href={`/berita?tag=${tag.toLowerCase()}`}
+                                    class="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-full text-sm transition-colors"
+                                >
+                                    #{tag}
+                                </a>
+                            ))
+                        }
+                    </div>
+                </div>
+
+                <!-- Share Button -->
+                <div
+                    class="mt-8 flex flex-col sm:flex-row justify-between items-center gap-4 p-6 bg-gray-50 rounded-lg"
+                >
+                    <p class="font-medium text-gray-700">
+                        Bagikan artikel ini:
+                    </p>
+                    <div class="flex space-x-4">
+                        <a
+                            href={`https://www.facebook.com/sharer/sharer.php?u=${Astro.url.href}`}
+                            target="_blank"
+                            class="w-10 h-10 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center transition-colors"
+                            aria-label="Share ke Facebook"
+                        >
+                            <svg class="w-6 h-6">
+                                <use xlink:href="/icons/sprite.svg#facebook"
+                                ></use>
+                            </svg>
+                        </a>
+                        <a
+                            href={`https://twitter.com/intent/tweet?url=${Astro.url.href}&text=${post.data.title}`}
+                            target="_blank"
+                            class="w-10 h-10 bg-black hover:bg-black/80 text-white rounded-full flex items-center justify-center transition-colors"
+                            aria-label="Share ke Twitter"
+                        >
+                            <svg class="w-6 h-6">
+                                <use xlink:href="/icons/sprite.svg#twitter"
+                                ></use>
+                            </svg>
+                        </a>
+                        <a
+                            href={`whatsapp://send?text=${post.data.title} ${Astro.url.href}`}
+                            class="w-10 h-10 bg-green-500 hover:bg-green-600 text-white rounded-full flex items-center justify-center transition-colors"
+                            aria-label="Share via WhatsApp"
+                        >
+                            <svg class="w-6 h-6">
+                                <use xlink:href="/icons/sprite.svg#whatsapp"
+                                ></use>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Berita Terkait -->
+        <section class="py-16 bg-gray-100">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center text-blue-800 mb-12">
+                    Berita Terkait
+                </h2>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    {
+                        relatedPost.map((item) => (
+                            <article class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                                <a href={`/berita/${item.data.title}`}>
+                                    <Image
+                                        src={item.data.cover}
+                                        alt={item.data.title}
+                                        class="w-full h-48 object-cover"
+                                        loading="lazy"
+                                    />
+                                </a>
+                                <div class="p-6">
+                                    <div class="flex justify-between items-center mb-3">
+                                        <span class="px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                            {item.data.categories}
+                                        </span>
+                                        <time class="text-sm text-gray-500">
+                                            {new Date(
+                                                item.data.date,
+                                            ).toLocaleDateString("id-ID", {
+                                                day: "numeric",
+                                                month: "long",
+                                                year: "numeric",
+                                            })}
+                                        </time>
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-3">
+                                        <a
+                                            href={`/berita/${item.id}`}
+                                            class="hover:text-blue-600 hover:underline"
+                                        >
+                                            {item.data.title}
+                                        </a>
+                                    </h3>
+                                    <a
+                                        href={`/berita/${item.id}`}
+                                        class="inline-block text-blue-600 hover:underline text-sm font-medium"
+                                    >
+                                        Baca Selengkapnya →
+                                    </a>
+                                </div>
+                            </article>
+                        ))
+                    }
+                </div>
+
+                <div class="text-center mt-12">
+                    <a
+                        href="/berita"
+                        class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5 mr-2"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                        </svg>
+                        Kembali ke Daftar Berita
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <Footer />
+
+        <style is:global>
+            /* Style untuk konten artikel */
+            .prose {
+                line-height: 1.75;
+                color: #374151;
+            }
+            .prose p {
+                margin-bottom: 1.25em;
+            }
+            .prose ul {
+                margin-bottom: 1.25em;
+                padding-left: 1.625em;
+            }
+            .prose li {
+                margin-bottom: 0.5em;
+            }
+            .prose img {
+                border-radius: 0.5rem;
+                margin: 2rem 0;
+            }
+        </style>
+    </body>
+</html>

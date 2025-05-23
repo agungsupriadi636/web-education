@@ -1,9 +1,10 @@
 ---
 title: "Sekolah Akan Melakukan Program Daur Ulang Baru"
-image:
- src: ./daur-ulang.jpg
- alt: daur ulang
-pubDate: "2024-04-15"
+cover: ./daur-ulang.jpg
+date: 2024-04-12
+description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum, ullam, velit ipsam soluta libero placeat sequi dignissimos expedita culpa quam debitis iure vero quisquam iste temporibus! Nam, rem unde eaque laborum voluptatem libero facere voluptate quisquam sed eos!"
+tags: ["berbagi", "alumni", "sekolah"]
+categories: ["daur ulang"]
 ---
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro, adipisci, ex, accusamus vel culpa quidem voluptatem inventore officia ab atque dicta minima sequi eos itaque non suscipit quas. Illum, pariatur, minima ab doloribus tempora dolore sequi repudiandae ea ducimus similique rem adipisci. Sint qui laborum fuga exercitationem dolore rem magni.
 

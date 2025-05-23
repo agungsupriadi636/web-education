@@ -3,179 +3,188 @@
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Timeline from "../components/Timeline.astro";
+import { Image } from "astro:assets";
+
+import diagram from "../media/diagram.png";
 
 // Data profil sekolah
 const sekolah = {
-  nama: "SMA NEGERI 1 BANGUNAN",
-  akreditasi: "A",
-  npsn: "12345678",
-  alamat: "Jl. Pendidikan No. 123, Kota Bangunan",
-  visi: "Membentuk generasi unggul yang berkarakter, berprestasi, dan berakhlak mulia",
-  misi: [
-    "Menyelenggarakan pendidikan berkualitas tinggi",
-    "Mengembangkan potensi siswa secara holistik",
-    "Menanamkan nilai-nilai karakter bangsa",
-    "Menjalin kerjasama dengan masyarakat dan dunia usaha",
-  ],
-  fasilitas: [
-    { nama: "Lab Komputer", icon: "💻", jumlah: 3 },
-    { nama: "Perpustakaan", icon: "📚", jumlah: 1 },
-    { nama: "Lapangan Olahraga", icon: "⚽", jumlah: 2 },
-    { nama: "Ruang Kelas", icon: "🏫", jumlah: 24 },
-    { nama: "Lab Bahasa", icon: "🔊", jumlah: 1 },
-    { nama: "Aula", icon: "🎭", jumlah: 1 },
-  ],
+    nama: "SMA NEGERI 1 BANGUNAN",
+    akreditasi: "A",
+    npsn: "12345678",
+    alamat: "Jl. Pendidikan No. 123, Kota Bangunan",
+    visi: "Membentuk generasi unggul yang berkarakter, berprestasi, dan berakhlak mulia",
+    misi: [
+        "Menyelenggarakan pendidikan berkualitas tinggi",
+        "Mengembangkan potensi siswa secara holistik",
+        "Menanamkan nilai-nilai karakter bangsa",
+        "Menjalin kerjasama dengan masyarakat dan dunia usaha",
+    ],
+    fasilitas: [
+        { nama: "Lab Komputer", icon: "💻", jumlah: 3 },
+        { nama: "Perpustakaan", icon: "📚", jumlah: 1 },
+        { nama: "Lapangan Olahraga", icon: "⚽", jumlah: 2 },
+        { nama: "Ruang Kelas", icon: "🏫", jumlah: 24 },
+        { nama: "Lab Bahasa", icon: "🔊", jumlah: 1 },
+        { nama: "Aula", icon: "🎭", jumlah: 1 },
+    ],
 };
 
 // Data sejarah (untuk komponen Timeline)
 const sejarah = [
-  { tahun: "1980", event: "Pendirian SMA Negeri 1 Bangunan" },
-  { tahun: "1995", event: "Perluasan gedung dan penambahan fasilitas" },
-  { tahun: "2010", event: "Meraih Akreditasi A pertama kali" },
-  { tahun: "2020", event: "Penerapan Kurikulum Merdeka" },
+    { tahun: "1980", event: "Pendirian SMA Negeri 1 Bangunan" },
+    { tahun: "1995", event: "Perluasan gedung dan penambahan fasilitas" },
+    { tahun: "2010", event: "Meraih Akreditasi A pertama kali" },
+    { tahun: "2020", event: "Penerapan Kurikulum Merdeka" },
 ];
 ---
 
 <!doctype html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Profil Sekolah - {sekolah.nama}</title>
-  </head>
-  <body class="bg-gray-50">
-    <Header />
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Profil Sekolah - {sekolah.nama}</title>
+    </head>
+    <body class="bg-gray-50">
+        <Header />
 
-    <!-- Hero Section -->
-    <section class="relative bg-blue-700 text-white py-20">
-      <div class="container mx-auto px-4 text-center">
-        <h1 class="text-4xl md:text-5xl font-bold mb-4">Profil Sekolah</h1>
-        <p class="text-xl max-w-2xl mx-auto">{sekolah.nama}</p>
-      </div>
-      <div
-        class="absolute bottom-0 left-0 right-0 h-12 bg-white/10 backdrop-blur-sm"
-      >
-      </div>
-    </section>
+        <!-- Hero Section -->
+        <section
+            class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20"
+        >
+            <div class="container mx-auto px-4 text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">
+                    Profil Sekolah
+                </h1>
+                <p class="text-xl max-w-2xl mx-auto">{sekolah.nama}</p>
+            </div>
+        </section>
 
-    <!-- Info Singkat -->
-    <section class="py-12 bg-white">
-      <div class="container mx-auto px-4 grid md:grid-cols-3 gap-8">
-        <div class="bg-blue-50 p-6 rounded-lg text-center">
-          <div class="text-4xl font-bold text-blue-700 mb-2">
-            {sekolah.akreditasi}
-          </div>
-          <p class="text-gray-700">Akreditasi</p>
-        </div>
-        <div class="bg-green-50 p-6 rounded-lg text-center">
-          <div class="text-4xl font-bold text-green-700 mb-2">24+</div>
-          <p class="text-gray-700">Ruang Kelas</p>
-        </div>
-        <div class="bg-yellow-50 p-6 rounded-lg text-center">
-          <div class="text-4xl font-bold text-yellow-700 mb-2">1,200+</div>
-          <p class="text-gray-700">Siswa Aktif</p>
-        </div>
-      </div>
-    </section>
+        <!-- Info Singkat -->
+        <section class="py-12 bg-white">
+            <div class="container mx-auto px-4 grid md:grid-cols-3 gap-8">
+                <div class="bg-blue-50 p-6 rounded-lg text-center">
+                    <div class="text-4xl font-bold text-blue-700 mb-2">
+                        {sekolah.akreditasi}
+                    </div>
+                    <p class="text-gray-700">Akreditasi</p>
+                </div>
+                <div class="bg-green-50 p-6 rounded-lg text-center">
+                    <div class="text-4xl font-bold text-green-700 mb-2">
+                        24+
+                    </div>
+                    <p class="text-gray-700">Ruang Kelas</p>
+                </div>
+                <div class="bg-yellow-50 p-6 rounded-lg text-center">
+                    <div class="text-4xl font-bold text-yellow-700 mb-2">
+                        1,200+
+                    </div>
+                    <p class="text-gray-700">Siswa Aktif</p>
+                </div>
+            </div>
+        </section>
 
-    <!-- Sejarah Sekolah -->
-    <section class="py-16 bg-gray-100">
-      <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center text-blue-800 mb-12">
-          Sejarah {sekolah.nama}
-        </h2>
-        <Timeline events={sejarah} />
-      </div>
-    </section>
+        <!-- Sejarah Sekolah -->
+        <section class="py-16 bg-gray-100">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center text-blue-800 mb-12">
+                    Sejarah {sekolah.nama}
+                </h2>
+                <Timeline events={sejarah} />
+            </div>
+        </section>
 
-    <!-- Visi & Misi -->
-    <section class="py-16 bg-white">
-      <div class="container mx-auto px-4 max-w-4xl">
-        <div class="grid md:grid-cols-2 gap-12">
-          <div>
-            <h2 class="text-3xl font-bold text-blue-800 mb-6">Visi</h2>
-            <p
-              class="text-xl text-gray-700 leading-relaxed border-l-4 border-blue-500 pl-6"
-            >
-              "{sekolah.visi}"
-            </p>
-          </div>
-          <div>
-            <h2 class="text-3xl font-bold text-blue-800 mb-6">Misi</h2>
-            <ul class="space-y-4">
-              {
-                sekolah.misi.map((item) => (
-                  <li class="flex items-start">
-                    <svg
-                      class="h-6 w-6 text-green-500 mr-3 mt-1 flex-shrink-0"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                    <span class="text-gray-700">{item}</span>
-                  </li>
-                ))
-              }
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
+        <!-- Visi & Misi -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4 max-w-4xl">
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div>
+                        <h2 class="text-3xl font-bold text-blue-800 mb-6">
+                            Visi
+                        </h2>
+                        <p
+                            class="text-xl text-gray-700 leading-relaxed border-l-4 border-blue-500 pl-6"
+                        >
+                            "{sekolah.visi}"
+                        </p>
+                    </div>
+                    <div>
+                        <h2 class="text-3xl font-bold text-blue-800 mb-6">
+                            Misi
+                        </h2>
+                        <ul class="space-y-4">
+                            {
+                                sekolah.misi.map((item) => (
+                                    <li class="flex items-start">
+                                        <svg
+                                            class="h-6 w-6 text-green-500 mr-3 mt-1 flex-shrink-0"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M5 13l4 4L19 7"
+                                            />
+                                        </svg>
+                                        <span class="text-gray-700">
+                                            {item}
+                                        </span>
+                                    </li>
+                                ))
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <!-- Fasilitas -->
-    <section class="py-16 bg-gray-100">
-      <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center text-blue-800 mb-12">
-          Fasilitas Sekolah
-        </h2>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {
-            sekolah.fasilitas.map((fasilitas) => (
-              <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-                <div class="text-4xl mb-4">{fasilitas.icon}</div>
-                <h3 class="text-xl font-semibold mb-2">{fasilitas.nama}</h3>
-                <p class="text-gray-600">
-                  {fasilitas.jumlah} {fasilitas.jumlah > 1 ? "unit" : "unit"}
-                </p>
-              </div>
-            ))
-          }
-        </div>
-      </div>
-    </section>
+        <!-- Fasilitas -->
+        <section class="py-16 bg-gray-100">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center text-blue-800 mb-12">
+                    Fasilitas Sekolah
+                </h2>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {
+                        sekolah.fasilitas.map((fasilitas) => (
+                            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                                <div class="text-4xl mb-4">
+                                    {fasilitas.icon}
+                                </div>
+                                <h3 class="text-xl font-semibold mb-2">
+                                    {fasilitas.nama}
+                                </h3>
+                                <p class="text-gray-600">
+                                    {fasilitas.jumlah}{" "}
+                                    {fasilitas.jumlah > 1 ? "unit" : "unit"}
+                                </p>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+        </section>
 
-    <!-- Struktur Organisasi -->
-    <section class="py-16 bg-white">
-      <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center text-blue-800 mb-12">
-          Struktur Organisasi
-        </h2>
-        <div class="bg-gray-100 p-8 rounded-lg">
-          <img
-            src="/images/struktur-organisasi.png"
-            alt="Struktur Organisasi SMA Negeri 1 Bangunan"
-            class="mx-auto w-full max-w-4xl"
-          />
-          <p class="text-center mt-4 text-gray-600">
-            <a
-              href="/images/struktur-organisasi.png"
-              download
-              class="text-blue-600 hover:underline"
-            >
-              Unduh Gambar
-            </a>
-          </p>
-        </div>
-      </div>
-    </section>
+        <!-- Struktur Organisasi -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center text-blue-800 mb-12">
+                    Struktur Organisasi
+                </h2>
+                <div class="bg-gray-100 p-8 rounded-lg">
+                    <Image
+                        src={diagram}
+                        alt="Struktur Organisasi SMA Negeri 1 Bangunan"
+                        class="mx-auto w-full max-w-4xl"
+                    />
+                </div>
+            </div>
+        </section>
 
-    <Footer />
-  </body>
+        <Footer />
+    </body>
 </html>
