@@ -2,47 +2,26 @@
 // src/pages/siswa.astro
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+
+const alumnis = await getCollection("alumni");
+
+import osis from "../media/osis.jpg";
+import mkr from "../media/mkr.jpg";
 
 // Data dummy
 const organisasiSiswa = [
     {
         nama: "OSIS 2023/2024",
         deskripsi: "Organisasi Siswa Intra Sekolah periode 2023/2024",
-        logo: "/osis-logo.png",
+        logo: osis,
     },
     {
         nama: "MPK 2023/2024",
         deskripsi: "Majelis Perwakilan Kelas periode 2023/2024",
-        logo: "/mpk-logo.png",
+        logo: mkr,
     },
-];
-
-const alumni = [
-    {
-        nama: "Dr. Sarah Smith",
-        angkatan: 2005,
-        profesi: "Dokter Spesialis",
-        testimoni:
-            "Dasar-dasar kedisiplinan yang saya dapatkan di sekolah ini sangat membantu karir saya",
-        foto: "/alumni/sarah.jpg",
-    },
-    {
-        nama: "Dr. Sarah Smith",
-        angkatan: 2005,
-        profesi: "Dokter Spesialis",
-        testimoni:
-            "Dasar-dasar kedisiplinan yang saya dapatkan di sekolah ini sangat membantu karir saya",
-        foto: "/alumni/sarah.jpg",
-    },
-    {
-        nama: "Dr. Sarah Smith",
-        angkatan: 2005,
-        profesi: "Dokter Spesialis",
-        testimoni:
-            "Dasar-dasar kedisiplinan yang saya dapatkan di sekolah ini sangat membantu karir saya",
-        foto: "/alumni/sarah.jpg",
-    },
-    // ... tambahkan data alumni
 ];
 
 const prestasiSiswa = [
@@ -52,16 +31,15 @@ const prestasiSiswa = [
         siswa: "Budi Santoso (XII IPA 1)",
     },
     {
-        judul: "Juara 1 Olimpiade Matematika Nasional",
+        judul: "Juara 1 Olimpiade fisika Nasional",
         tahun: 2022,
-        siswa: "Budi Santoso (XII IPA 1)",
+        siswa: "Ratna Indah Sari (XII IPA 1)",
     },
     {
-        judul: "Juara 1 Olimpiade Matematika Nasional",
+        judul: "Juara 1 Olimpiade kimia Nasional",
         tahun: 2020,
-        siswa: "Budi Santoso (XII IPA 1)",
+        siswa: "Indah Purwasih (XII IPA 1)",
     },
-    // ... tambahkan prestasi
 ];
 ---
 
@@ -100,10 +78,10 @@ const prestasiSiswa = [
                     {
                         organisasiSiswa.map((org) => (
                             <div class="bg-gray-50 p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow text-center">
-                                <img
+                                <Image
                                     src={org.logo}
                                     alt={org.nama}
-                                    class="h-24 mx-auto mb-6"
+                                    class="w-full aspect-square object-cover rounded-lg mx-auto mb-6"
                                 />
                                 <h3 class="text-xl font-bold mb-2">
                                     {org.nama}
@@ -165,29 +143,29 @@ const prestasiSiswa = [
 
                 <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     {
-                        alumni.map((person) => (
+                        alumnis.map((person) => (
                             <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                                <img
-                                    src={person.foto}
-                                    alt={person.nama}
-                                    class="w-full h-48 object-cover"
+                                <Image
+                                    src={person.data.foto}
+                                    alt={person.data.nama}
+                                    class="w-full aspect-square object-cover"
                                 />
                                 <div class="p-6">
                                     <div class="flex justify-between items-start">
                                         <div>
                                             <h3 class="text-xl font-bold">
-                                                {person.nama}
+                                                {person.data.nama}
                                             </h3>
                                             <p class="text-blue-600">
-                                                Angkatan {person.angkatan}
+                                                Angkatan {person.data.angkatan}
                                             </p>
                                         </div>
                                         <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
-                                            {person.profesi}
+                                            {person.data.pekerjaan}
                                         </span>
                                     </div>
                                     <p class="mt-4 text-gray-600 italic">
-                                        {person.testimoni}
+                                        {person.data.qoute}
                                     </p>
                                 </div>
                             </div>

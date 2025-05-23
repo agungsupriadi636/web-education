@@ -25,4 +25,15 @@ const team = defineCollection({
     })
 });
 
-export const collections = { blog, team };
+const alumni = defineCollection({
+    loader: glob({ pattern: '**/**.yaml', base: "./src/data/alumni" }),
+    schema: ({ image }) => z.object({
+        nama: z.string(),
+        foto: image(),
+        angkatan: z.number(),
+        pekerjaan: z.string(),
+        qoute: z.string(),
+    })
+});
+
+export const collections = { blog, team, alumni };
