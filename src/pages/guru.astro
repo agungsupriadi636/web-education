@@ -3,59 +3,16 @@
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
 
+const teams = await getCollection("team");
 import diagram from "../media/diagram.png";
+
 const categories = [
     { id: "all", label: "Semua" },
+    { id: "kepsek", label: "Kepala Sekolah" },
     { id: "guru", label: "Guru" },
     { id: "staff", label: "Staf" },
-    { id: "kepsek", label: "Kepala Sekolah" },
-];
-
-const team = [
-    {
-        nama: "Dr. John Doe, M.Pd.",
-        jabatan: "Kepala Sekolah",
-        foto: "/team/kepsek.jpg",
-        kategori: "kepsek",
-        mapel: "-",
-    },
-    {
-        nama: "Jane Smith, S.Pd.",
-        jabatan: "Guru Matematika",
-        foto: "/team/guru1.jpg",
-        kategori: "guru",
-        mapel: "Matematika",
-    },
-    {
-        nama: "Jane Smith, S.Pd.",
-        jabatan: "Guru Matematika",
-        foto: "/team/guru1.jpg",
-        kategori: "guru",
-        mapel: "Matematika",
-    },
-    {
-        nama: "Jane Smith, S.Pd.",
-        jabatan: "Guru Matematika",
-        foto: "/team/guru1.jpg",
-        kategori: "guru",
-        mapel: "Matematika",
-    },
-    {
-        nama: "Jane Smith, S.Pd.",
-        jabatan: "Guru Matematika",
-        foto: "/team/guru1.jpg",
-        kategori: "staff",
-        mapel: "-",
-    },
-    {
-        nama: "Jane Smith, S.Pd.",
-        jabatan: "Guru Matematika",
-        foto: "/team/guru1.jpg",
-        kategori: "staff",
-        mapel: "-",
-    },
-    // ... tambahkan data lainnya
 ];
 ---
 
@@ -112,26 +69,26 @@ const team = [
                     class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
                 >
                     {
-                        team.map((person) => (
+                        teams.map((person) => (
                             <div
                                 class="team-item bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all"
-                                data-category={person.kategori}
+                                data-category={person.data.kategori}
                             >
-                                <img
-                                    src={person.foto}
-                                    alt={person.nama}
+                                <Image
+                                    src={person.data.foto}
+                                    alt={person.data.nama}
                                     class="w-full h-64 object-cover"
                                 />
                                 <div class="p-6">
                                     <h3 class="text-xl font-bold">
-                                        {person.nama}
+                                        {person.data.nama}
                                     </h3>
                                     <p class="text-blue-600 font-medium">
-                                        {person.jabatan}
+                                        {person.data.jabatan}
                                     </p>
-                                    {person.mapel !== "-" && (
+                                    {person.data.mapel !== "-" && (
                                         <p class="text-gray-600 mt-2">
-                                            Mata Pelajaran: {person.mapel}
+                                            Mata Pelajaran: {person.data.mapel}
                                         </p>
                                     )}
                                 </div>

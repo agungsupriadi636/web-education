@@ -14,13 +14,15 @@ const blog = defineCollection({
     })
 });
 
-const teacher = defineCollection({
-    loader: glob({ pattern: '**/[^_]*.yaml', base: "./src/data/blog" }),
+const team = defineCollection({
+    loader: glob({ pattern: '**/**.yaml', base: "./src/data/team" }),
     schema: ({ image }) => z.object({
-        title: z.string(),
-        cover: image(),
-        description: z.string(),
+        nama: z.string(),
+        jabatan: z.string(),
+        foto: image(),
+        kategori: z.string(),
+        mapel: z.string(),
     })
 });
 
-export const collections = { blog, teacher };
+export const collections = { blog, team };
