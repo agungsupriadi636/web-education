@@ -2,6 +2,9 @@
 // src/pages/program.astro
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import { Image } from "astro:assets";
+import jadwal from "../media/jadwal.png";
+import struktur from "../media/kurikulum.png";
 
 const kurikulum = {
     nama: "Kurikulum Merdeka",
@@ -130,8 +133,8 @@ const ekstrakurikuler = [
                         <div
                             class="bg-white border rounded-lg overflow-hidden shadow-sm"
                         >
-                            <img
-                                src="/images/jadwal-pelajaran.jpg"
+                            <Image
+                                src={jadwal}
                                 alt="Contoh Jadwal"
                                 class="w-full"
                             />
@@ -159,8 +162,8 @@ const ekstrakurikuler = [
                             Struktur Kurikulum
                         </h3>
                         <div class="bg-white border rounded-lg p-4 shadow-sm">
-                            <img
-                                src="/images/struktur-kurikulum.png"
+                            <Image
+                                src={struktur}
                                 alt="Struktur Kurikulum"
                                 class="w-full"
                             />

@@ -2,7 +2,9 @@
 // src/pages/guru.astro
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import { Image } from "astro:assets";
 
+import diagram from "../media/diagram.png";
 const categories = [
     { id: "all", label: "Semua" },
     { id: "guru", label: "Guru" },
@@ -91,9 +93,9 @@ const team = [
             </div>
         </section>
 
-        <!-- Filter Kategori -->
-        <section class="py-12 bg-white">
-            <div class="container mx-auto px-4">
+        <!-- Daftar Guru & Staf -->
+        <section class="py-16 bg-gray-100">
+            <div class="container mx-auto px-4 space-y-8">
                 <div class="flex flex-wrap justify-center gap-4">
                     {
                         categories.map((category) => (
@@ -106,12 +108,6 @@ const team = [
                         ))
                     }
                 </div>
-            </div>
-        </section>
-
-        <!-- Daftar Guru & Staf -->
-        <section class="py-16 bg-gray-100">
-            <div class="container mx-auto px-4">
                 <div
                     class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
                 >
@@ -149,14 +145,11 @@ const team = [
         <!-- Struktur Organisasi -->
         <section class="py-16 bg-white">
             <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold text-center text-blue-800 mb-12">
-                    Struktur Organisasi
-                </h2>
-                <div class="bg-gray-100 p-8 rounded-lg max-w-4xl mx-auto">
-                    <img
-                        src="/images/struktur-organisasi.jpg"
+                <div class="max-w-4xl mx-auto">
+                    <Image
+                        src={diagram}
                         alt="Struktur Organisasi Sekolah"
-                        class="w-full"
+                        class="w-full rounded-lg shadow-lg"
                     />
                 </div>
             </div>
