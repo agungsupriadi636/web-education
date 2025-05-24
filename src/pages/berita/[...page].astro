@@ -1,0 +1,274 @@
+---
+// src/pages/berita.astro
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import Pagination from "../../components/Pagination.astro";
+
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths({ paginate }) {
+    // Load your data with fetch(), getCollection(), etc.
+    const data = await getCollection("blog");
+    const blogs = data.sort(
+        (a, b) =>
+            new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+    );
+
+    // Return a paginated collection of paths for all items
+    return paginate(blogs, { pageSize: 3 });
+}
+
+const { page } = Astro.props;
+---
+
+<!doctype html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Berita - NAMA SEKOLAH</title>
+    </head>
+    <body class="bg-gray-50">
+        <Header />
+
+        <!-- Hero Section -->
+        <section
+            class="bg-gradient-to-r from-blue-700 to-blue-900 text-white py-20"
+        >
+            <div class="container mx-auto px-4 text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">
+                    Berita Sekolah
+                </h1>
+                <p class="text-xl">
+                    Informasi terbaru seputar kegiatan dan prestasi
+                </p>
+            </div>
+        </section>
+
+        <!-- Daftar Berita -->
+        <section class="py-16 bg-gray-100">
+            <div class="container mx-auto px-4">
+                <!-- list berita -->
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {
+                        page.data.map((item) => (
+                            <article class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                                <Image
+                                    src={item.data.cover}
+                                    alt={item.data.title}
+                                    class="w-full h-48 object-cover"
+                                />
+                                <div class="p-6">
+                                    <div class="flex justify-between items-center mb-3">
+                                        <span class="px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                            {item.data.categories}
+                                        </span>
+                                        <span class="text-sm text-gray-500">
+                                            {new Date(
+                                                item.data.date,
+                                            ).toLocaleDateString("id-ID", {
+                                                year: "numeric",
+                                                month: "long",
+                                                day: "numeric",
+                                            })}
+                                        </span>
+                                    </div>
+                                    <h3 class="text-xl font-bold mb-2">
+                                        <a href={`/berita/${item.data.title}`}>
+                                            {item.data.title}
+                                        </a>
+                                    </h3>
+                                    <p class="text-gray-600 mb-4 line-clamp-2">
+                                        {item.data.description}
+                                    </p>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm text-gray-500">
+                                            Oleh: {item.data.author}
+                                        </span>
+                                        <a
+                                            href={`/berita/${item.id}`}
+                                            class="text-blue-600 hover:underline text-sm font-medium"
+                                        >
+                                            Baca Selengkapnya →
+                                        </a>
+                                    </div>
+                                </div>
+                            </article>
+                        ))
+                    }
+                </div>
+
+                <!-- pagination -->
+                <nav
+                    aria-label="Page navigation"
+                    class="flex justify-center mt-8"
+                >
+                    <ul class="flex items-center -space-x-px h-8 text-sm">
+                        <li>
+                            {
+                                page.url.first ? (
+                                    <a
+                                        href={page.url.prev}
+                                        class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                                    >
+                                        <span class="sr-only">
+                                            {page.url.prev}
+                                        </span>
+                                        <svg
+                                            class="w-2.5 h-2.5 rtl:rotate-180"
+                                            aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 6 10"
+                                        >
+                                            <path
+                                                stroke="currentColor"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M5 1 1 5l4 4"
+                                            />
+                                        </svg>
+                                    </a>
+                                ) : (
+                                    <div class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                                        <span class="sr-only">
+                                            {page.url.prev}
+                                        </span>
+                                        <svg
+                                            class="w-2.5 h-2.5 rtl:rotate-180"
+                                            aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 6 10"
+                                        >
+                                            <path
+                                                stroke="currentColor"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M5 1 1 5l4 4"
+                                            />
+                                        </svg>
+                                    </div>
+                                )
+                            }
+                        </li>
+                        {
+                            Array.from(
+                                { length: page.total / page.size },
+                                (_, i) => i + 1,
+                            ).map((item) => (
+                                <li>
+                                    <a
+                                        href={
+                                            item === 1
+                                                ? "/berita"
+                                                : `/berita/${item}`
+                                        }
+                                        class:list={[
+                                            "flex items-center justify-center px-3 h-8 leading-tight",
+                                            {
+                                                "bg-blue-600 text-white hover:bg-blue-700":
+                                                    item == page.currentPage,
+                                            },
+                                            {
+                                                "text-gray-500 border border-gray-300 hover:bg-gray-100 hover:text-gray-700":
+                                                    item != page.currentPage,
+                                            },
+                                        ]}
+                                    >
+                                        {item}
+                                    </a>
+                                </li>
+                            ))
+                        }
+
+                        <li>
+                            {
+                                page.url.last ? (
+                                    <a
+                                        href={page.url.next}
+                                        class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                                    >
+                                        <span class="sr-only">
+                                            {page.url.next}
+                                        </span>
+                                        <svg
+                                            class="w-2.5 h-2.5 rtl:rotate-180"
+                                            aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 6 10"
+                                        >
+                                            <path
+                                                stroke="currentColor"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="m1 9 4-4-4-4"
+                                            />
+                                        </svg>
+                                    </a>
+                                ) : (
+                                    <div class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                                        <span class="sr-only">
+                                            {page.url.next}
+                                        </span>
+                                        <svg
+                                            class="w-2.5 h-2.5 rtl:rotate-180"
+                                            aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 6 10"
+                                        >
+                                            <path
+                                                stroke="currentColor"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="m1 9 4-4-4-4"
+                                            />
+                                        </svg>
+                                    </div>
+                                )
+                            }
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-2xl font-bold text-blue-800 mb-4">
+                    Dapatkan Update Berita
+                </h2>
+                <p class="text-gray-600 mb-6">
+                    Berlangganan newsletter kami untuk mendapatkan informasi
+                    terbaru
+                </p>
+                <form
+                    class="flex flex-col sm:flex-row max-w-3xl mx-auto gap-2 justify-center p-2"
+                >
+                    <input
+                        type="email"
+                        placeholder="Alamat email Anda"
+                        class="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 flex-grow max-w-md"
+                        required
+                    />
+                    <button
+                        type="submit"
+                        class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors"
+                    >
+                        Berlangganan
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <Footer />
+    </body>
+</html>
